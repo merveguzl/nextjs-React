@@ -1,0 +1,53 @@
+{
+  "Menu": [
+    {
+      "icon": "https://cdn-icons-png.flaticon.com/512/25/25694.png",
+      "text": "home",
+      "path": "/home"
+    },
+    {
+      "icon": "https://icons.veryicon.com/png/o/miscellaneous/face-monochrome-icon/calendar-249.png",
+      "text": "calendar",
+      "path": "/calendar"
+    },
+    {
+      "icon": "https://www.freeiconspng.com/thumbs/document-icon/document-icon-19.png",
+      "text": "project",
+      "path": "/project"
+    },
+    {
+      "icon": "https://www.iconpacks.net/icons/2/free-settings-icon-3110-thumb.png",
+      "text": "settings",
+      "path": "/settings"
+    }
+  ],
+  "Events": [
+    {
+      "title": "React Çalışması",
+      "start": "2025-03-07T10:00:00Z",
+      "end": "2025-03-07T12:00:00Z"
+    },
+    {
+      "title": "Firebase Entegrasyonu",
+      "start": "2025-03-08T14:00:00Z",
+      "end": "2025-03-08T16:00:00Z"
+    }
+  ],
+  "DashboardAlert": [
+    {
+      "title": "Yeni Görev Eklendi.",
+      "button": "Proje Detayları",
+      "path": "/project"
+    },
+    {
+      "title": "Ayarlarını Gözden Geçir!",
+      "button": "Ayarlar",
+      "path": "/settings"
+    },
+    {
+      "title": "Yeni Eğitim Eklendi",
+      "button": "Takvime Git!",
+      "path": "/calendar"
+    }
+  ]
+}

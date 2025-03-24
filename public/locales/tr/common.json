@@ -1,0 +1,23 @@
+{
+  "agenda_calendar": "Ajanda Takvimi",
+  "home": "Anasayfa",
+  "calendar": "Takvim",
+  "project": "Proje",
+  "settings": "Ayarlar",
+  "login": "Giriş Yap",
+  "email": "E-posta",
+  "password": "Şifre",
+  "forgot_password": "Şifremi Unuttum",
+  "error_email": "Geçersiz email adresi",
+  "error_email_required": "Email adresi zorunludur",
+  "error_password_min": "Şifre en az 6 karakter olmalıdır",
+  "error_password_max": "Şifre 20 karakterden uzun olamaz",
+  "error_password_required": "Şifre zorunludur",
+  "wind_speed": "Rüzgar Hızı",
+  "search": "Ara...",
+  "account_settings": "Hesap Ayarları",
+  "email_settings": "E-posta Adresiniz: ",
+  "current_password": "Mevcut Şifre",
+  "new_passord": "Yeni Şifre",
+  "save": "Kaydet"
+}
