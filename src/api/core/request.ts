@@ -45,7 +45,7 @@ const getUrl = (option: RequestOption, baseUri: string): string => {
 export const _request = <T>(option: RequestOption): Promise<T> => {
   const BASE_URI = "https://myappsnextjs-default-rtdb.firebaseio.com/";
   try {
-    const header = getHeaders(option);
+    const header = getHeaders();
     const url = getUrl(option, BASE_URI);
     const specificAxios = setupInterceptors(axios.create(), option);
     const config: AxiosRequestConfig = {
@@ -69,7 +69,7 @@ export const _request = <T>(option: RequestOption): Promise<T> => {
 
 export const _requestThirdParty = <T>(option: RequestOption): Promise<T> => {
   try {
-    const header = getHeaders(option);
+    const header = getHeaders();
     const specificAxios = setupInterceptors(axios.create(), option);
     const config: AxiosRequestConfig = {
       method: option.method,
