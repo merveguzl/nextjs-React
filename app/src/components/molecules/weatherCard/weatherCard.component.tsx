@@ -26,8 +26,13 @@ const WeatherCard = ({
     >
       <div className="mt-2 p-4 border-b border-grey-light text-center z-10">
         <span className="text-2xl font-thin">
-          {destinationData?.results?.[0]?.components?.state}-
-          {destinationData?.results?.[0]?.components?.town}
+          {destinationData?.results?.[0]?.components?.state
+            ? destinationData?.results?.[0]?.components?.state
+            : ""}
+          -
+          {destinationData?.results?.[0]?.components?.town
+            ? destinationData?.results?.[0]?.components?.town
+            : ""}
         </span>
       </div>
       <div
@@ -39,12 +44,19 @@ const WeatherCard = ({
         <div className="text-center p-2">
           <div className="text-lg text-grey-light">
             <span className="text-center text-5xl text-white mx-6 font-thin">
-              {weatherData?.current?.temperature_2m}˚
+              {weatherData?.current?.temperature_2m
+                ? weatherData?.current?.temperature_2m
+                : ""}
+              ˚
             </span>
           </div>
           <div className="text-lg text-grey-light">
             <span className="text-center text-xl text-white mx-6 font-thin">
-              {t("wind_speed")} : {weatherData?.current?.wind_speed_10m}˚
+              {t("wind_speed")} :{" "}
+              {weatherData?.current?.wind_speed_10m
+                ? weatherData?.current?.wind_speed_10m
+                : ""}
+              ˚
             </span>
           </div>
         </div>

@@ -26,28 +26,32 @@ export default function ProjectContainer() {
     <div className="flex flex-col md:flex-row w-full h-full shadow-lg rounded-3xl">
       <section className="flex flex-col pt-3 w-full md:w-4/12 bg-gray-50 min-h-[50vh] md:min-h-full overflow-y-auto">
         <ul className="mt-6 space-y-4">
-          {projectData?.map((item, key) => (
-            <li
-              key={key}
-              className={`py-6 border-b px-4 transition hover:bg-amber-100 cursor-pointer text-center md:text-left ${
-                active === key && "bg-amber-700 text-white"
-              }`}
-              onClick={() => setActive(key)}
-            >
-              <div className="flex flex-col md:flex-row justify-between items-center">
-                <Text
-                  text={item.title}
-                  className={`text-lg font-semibold ${
-                    active === key ? "text-white" : "text-background"
-                  } `}
-                />
-                <Text text={item.time} className="text-md text-gray-400" />
-              </div>
-              <div className="text-md italic text-gray-400 text-center md:text-left">
-                {item.subTitle}
-              </div>
-            </li>
-          ))}
+          {projectData ? (
+            projectData?.map((item, key) => (
+              <li
+                key={key}
+                className={`py-6 border-b px-4 transition hover:bg-amber-100 cursor-pointer text-center md:text-left ${
+                  active === key && "bg-amber-700 text-white"
+                }`}
+                onClick={() => setActive(key)}
+              >
+                <div className="flex flex-col md:flex-row justify-between items-center">
+                  <Text
+                    text={item.title}
+                    className={`text-lg font-semibold ${
+                      active === key ? "text-white" : "text-background"
+                    } `}
+                  />
+                  <Text text={item.time} className="text-md text-gray-400" />
+                </div>
+                <div className="text-md italic text-gray-400 text-center md:text-left">
+                  {item.subTitle}
+                </div>
+              </li>
+            ))
+          ) : (
+            <div></div>
+          )}
         </ul>
       </section>
       {projectData ? (

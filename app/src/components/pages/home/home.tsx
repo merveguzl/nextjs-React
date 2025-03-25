@@ -79,9 +79,13 @@ const HomeContainer = () => {
       <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 p-4">
         <UserCard />
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-1 md:grid-cols-1 mt-4 sm:w-full md:w-1/2 lg:w-1/3">
-          {dashboardAlertData?.map((item, key) => (
-            <HomeAlert key={key} item={item} />
-          ))}
+          {dashboardAlertData ? (
+            dashboardAlertData?.map((item, key) => (
+              <HomeAlert key={key} item={item} />
+            ))
+          ) : (
+            <div></div>
+          )}
         </div>
       </div>
     </div>

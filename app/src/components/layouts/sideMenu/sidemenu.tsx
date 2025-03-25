@@ -110,9 +110,13 @@ export default function MakeSidebar({
   return (
     <div className="relative">
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar}>
-        {menuData?.map((item, index) => (
-          <SidebarItem key={index} {...item} setPagePath={setPagePath} />
-        ))}
+        {menuData ? (
+          menuData?.map((item, index) => (
+            <SidebarItem key={index} {...item} setPagePath={setPagePath} />
+          ))
+        ) : (
+          <div></div>
+        )}
       </Sidebar>
     </div>
   );
