@@ -64,11 +64,13 @@ export default function LoginContainer() {
                         errors.email ? "border-red-500" : ""
                       }`}
                     />
-                    {errors.email && (
+                    {errors.email ? (
                       <Text
                         text={(errors?.email.message as string) ?? ""}
                         className="mt-1 text-xs text-red-500"
                       />
+                    ) : (
+                      <div></div>
                     )}
                   </div>
                 </div>
@@ -87,11 +89,13 @@ export default function LoginContainer() {
                         errors.password && "border-red-500"
                       }`}
                     />
-                    {errors.password && (
+                    {errors.password ? (
                       <Text
                         text={(errors?.password.message as string) ?? ""}
                         className="mt-1 text-xs text-red-500"
                       />
+                    ) : (
+                      <div></div>
                     )}
                   </div>
                 </div>

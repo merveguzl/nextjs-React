@@ -50,7 +50,7 @@ export default function ProjectContainer() {
           ))}
         </ul>
       </section>
-      {projectData && (
+      {projectData ? (
         <section className="w-full md:w-6/12 px-4 flex flex-col bg-white rounded-r-3xl">
           <div className="flex flex-col md:flex-row justify-between items-center h-auto md:h-32 border-b-2 mb-8">
             <div className="flex space-x-4 items-center">
@@ -85,6 +85,8 @@ export default function ProjectContainer() {
             </article>
           </section>
         </section>
+      ) : (
+        <div></div>
       )}
     </div>
   );

@@ -44,13 +44,15 @@ export default function MainNavigation() {
         />
       </div>
 
-      {!isSidebarOpen && (
+      {!isSidebarOpen ? (
         <button
           className="absolute top-4 left-4 z-50 md:hidden bg-gray-100 p-2 rounded-full shadow"
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
         >
           <Bars3Icon className="h-6 w-6 text-gray-700" />
         </button>
+      ) : (
+        <div></div>
       )}
 
       <div className="flex-1 flex flex-col h-screen overflow-auto p-4 md:p-6 lg:p-8 bg-white">

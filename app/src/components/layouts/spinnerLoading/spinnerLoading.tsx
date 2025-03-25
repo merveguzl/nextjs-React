@@ -9,7 +9,7 @@ const LoadingSpinner = ({ children }: { children: ReactNode }) => {
 
   return (
     <>
-      {visible && (
+      {visible ? (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <Lottie
             animationData={LoadingGif}
@@ -18,6 +18,8 @@ const LoadingSpinner = ({ children }: { children: ReactNode }) => {
             className="w-64 h-64"
           />
         </div>
+      ) : (
+        <div></div>
       )}
       {children}
     </>
