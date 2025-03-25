@@ -1,10 +1,10 @@
 "use client";
 
 import Lottie from "lottie-react";
-import React from "react";
+import React, { ReactNode } from "react";
 import LoadingGif from "../../../../public/assets/gif/loading.json";
 import { useLoadingStore } from "@/src/store/app";
-const LoadingSpinner = () => {
+const LoadingSpinner = ({ children }: { children: ReactNode }) => {
   const visible = useLoadingStore((state) => state.visible);
 
   return (
@@ -19,6 +19,7 @@ const LoadingSpinner = () => {
           />
         </div>
       )}
+      {children}
     </>
   );
 };

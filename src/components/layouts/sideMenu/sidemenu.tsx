@@ -2,17 +2,16 @@
 
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import SidebarItem from "../../molecules/sideBarItem/sideBarItem";
-import { NavigationNames } from "../../navigation/navigation.type";
 import { getMenu } from "@/src/api/services/menu";
 import { useQuery } from "@tanstack/react-query";
 import Text from "../../atoms/text/text.component";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import useUserStore from "@/src/store/user";
 import { hideLoading, showLoading } from "@/src/store/app";
-import { useNavigate } from "react-router-dom";
 import { JSX } from "react";
 import { MakeSidebarProps } from "./sidemenu.type";
 import { MenuResponse } from "@/src/api/models/menu";
+import Image from "next/image";
 
 function Sidebar({
   isOpen,
@@ -24,13 +23,12 @@ function Sidebar({
   children?: JSX.Element | JSX.Element[];
 }) {
   const { setLogin } = useUserStore();
-  const navigate = useNavigate();
 
   const onLogOut = () => {
     showLoading();
     setTimeout(() => {
       setLogin(false);
-      navigate(NavigationNames.ROOT);
+      // navigate(NavigationNames.ROOT);
       hideLoading();
     }, 1500);
   };
@@ -51,10 +49,12 @@ function Sidebar({
       >
         <nav className="flex h-full flex-col border-r bg-white shadow-sm">
           <div className="flex items-center justify-between p-4 pb-2">
-            <img
+            <Image
               src="https://thinksmobility.com/wp-content/uploads/2022/02/logo.svg"
               className="overflow-hidden transition-all w-32"
               alt="Logo"
+              width={200}
+              height={200}
             />
             <button className="sm:hidden p-1.5" onClick={toggleSidebar}>
               <XMarkIcon className="h-6 w-6 text-gray-600" />
@@ -77,10 +77,12 @@ function Sidebar({
           </button>
 
           <div className="border-t p-3 flex justify-center">
-            <img
+            <Image
               src="https://thinksmobility.com/wp-content/uploads/2022/02/logo.svg"
               alt="Logo"
               className="h-10 w-10"
+              width={200}
+              height={200}
             />
           </div>
         </nav>
@@ -92,6 +94,7 @@ function Sidebar({
 export default function MakeSidebar({
   isSidebarOpen,
   setIsSidebarOpen,
+  setPagePath,
 }: MakeSidebarProps) {
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
@@ -106,7 +109,7 @@ export default function MakeSidebar({
     <div className="relative">
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar}>
         {menuData?.map((item, index) => (
-          <SidebarItem key={index} {...item} />
+          <SidebarItem key={index} {...item} setPagePath={setPagePath} />
         ))}
       </Sidebar>
     </div>

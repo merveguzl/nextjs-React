@@ -9,3 +9,6 @@ export const NavigationNames = {
   HOME: "/home",
   PROJECT: "/project",
 } as const;
+
+export type PageNameType =
+  (typeof NavigationNames)[keyof typeof NavigationNames];

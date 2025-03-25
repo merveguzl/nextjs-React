@@ -7,6 +7,7 @@ import Text from "../../atoms/text/text.component";
 import Button from "../../atoms/button/button.component";
 import LoadingState from "../../molecules/loadingState/loadingState";
 import { ProjectResponse } from "@/src/api/models/project";
+import Image from "next/image";
 
 export default function ProjectContainer() {
   const [active, setActive] = useState(0);
@@ -54,10 +55,13 @@ export default function ProjectContainer() {
           <div className="flex flex-col md:flex-row justify-between items-center h-auto md:h-32 border-b-2 mb-8">
             <div className="flex space-x-4 items-center">
               <div className="h-20 w-20 md:h-12 md:w-12 rounded-full overflow-hidden">
-                <img
+                <Image
                   src={projectData[active].projectImage}
                   loading="lazy"
                   className="h-full w-full object-cover"
+                  alt="projectimage"
+                  width={200}
+                  height={200}
                 />
               </div>
               <div className="flex flex-col text-center md:text-left">

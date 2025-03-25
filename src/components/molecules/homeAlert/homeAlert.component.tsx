@@ -1,13 +1,10 @@
 "use client";
 
-import { useNavigate } from "react-router-dom";
 import Button from "../../atoms/button/button.component";
 import Text from "../../atoms/text/text.component";
 import { DashboardItem } from "@/src/api/models/dashboard";
 
 const HomeAlert = ({ item }: { item: DashboardItem }) => {
-  const navigate = useNavigate();
-
   return (
     <div className="flex flex-col">
       <div className="max-w-full sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-7xl mx-auto">
@@ -35,7 +32,7 @@ const HomeAlert = ({ item }: { item: DashboardItem }) => {
               <Button
                 text={`${item.button}→`}
                 className="block text-orange group-hover:text-slate-800 transition duration-200"
-                onClick={() => navigate(item.path)}
+                // onClick={() => navigate(item.path)}
               />
             </div>
           </div>

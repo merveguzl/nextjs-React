@@ -2,14 +2,16 @@
 
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import Text from "../../atoms/text/text.component";
-import { useNavigate } from "react-router-dom";
+import { PageNameType } from "../../navigation/navigation.type";
+import Image from "next/image";
 
 interface SidebarItemProps {
   active?: boolean;
   icon: React.ReactNode;
   text: string;
   subMenu?: SubMenuItemProps[] | null;
-  path: string;
+  path: PageNameType;
+  setPagePath: (params: PageNameType) => void;
 }
 
 interface SubMenuItemProps extends Omit<SidebarItemProps, "expanded"> {
@@ -22,13 +24,13 @@ export default function SidebarItem({
   text,
   subMenu = null,
   path,
+  setPagePath,
 }: SidebarItemProps) {
-  const navigate = useNavigate();
   return (
     <>
       <li>
         <button
-          onClick={() => navigate(path)}
+          onClick={() => setPagePath(path)}
           className={`
          group relative my-1 flex w-full cursor-pointer
          items-center rounded-md px-3
@@ -41,7 +43,12 @@ export default function SidebarItem({
      `}
         >
           <span className="h-6 w-6">
-            <img src={icon as string} />
+            <Image
+              src={icon as string}
+              alt="sidebar icın"
+              width={200}
+              height={200}
+            />
           </span>
           <Text
             text={text}

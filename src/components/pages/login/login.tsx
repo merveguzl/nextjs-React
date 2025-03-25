@@ -8,15 +8,20 @@ import useUserStore from "@/src/store/user";
 import { hideLoading, showLoading } from "@/src/store/app";
 import Button from "../../atoms/button/button.component";
 import { LoginFormData } from "./login.type";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function LoginContainer() {
   const { setLogin } = useUserStore();
 
+  const router = useRouter();
+
   const onSubmit = (data: LoginFormData) => {
     showLoading();
+    console.log("data", data);
     setTimeout(() => {
       setLogin(true);
-      console.log(data);
+      router.push("/home");
       hideLoading();
     }, 1500);
   };
@@ -30,10 +35,12 @@ export default function LoginContainer() {
             className="bg-white w-full sm:max-w-sm rounded-lg border border-orange p-8 shadow-lg"
           >
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-              <img
+              <Image
                 className="mx-auto h-10 w-auto"
                 src="https://thinksmobility.com/wp-content/uploads/2022/02/logo.svg"
                 alt="Your Company"
+                width={200}
+                height={200}
               />
               <Text
                 text="login"
