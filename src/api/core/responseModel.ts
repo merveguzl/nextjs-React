@@ -1,4 +1,5 @@
-import {AxiosResponse} from 'axios';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { AxiosResponse } from "axios";
 
 export type ValidationError = {
   field?: string | null;

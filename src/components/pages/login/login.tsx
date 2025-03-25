@@ -5,11 +5,12 @@ import { schema } from "./login.schema";
 import useUserStore from "@/src/store/user";
 import { hideLoading, showLoading } from "@/src/store/app";
 import Button from "../../atoms/button/button.component";
+import { LoginFormData } from "./login.type";
 
 export default function LoginContainer() {
   const { setLogin } = useUserStore();
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: LoginFormData) => {
     showLoading();
     window.console.log(data);
     setTimeout(() => {
@@ -55,7 +56,7 @@ export default function LoginContainer() {
                     />
                     {errors.email && (
                       <Text
-                        text={errors?.email.message ?? ""}
+                        text={(errors?.email.message as string) ?? ""}
                         className="mt-1 text-xs text-red-500"
                       />
                     )}
@@ -78,7 +79,7 @@ export default function LoginContainer() {
                     />
                     {errors.password && (
                       <Text
-                        text={errors?.password.message ?? ""}
+                        text={(errors?.password.message as string) ?? ""}
                         className="mt-1 text-xs text-red-500"
                       />
                     )}

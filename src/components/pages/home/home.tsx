@@ -6,6 +6,11 @@ import LoadingState from "../../molecules/loadingState/loadingState";
 import UserCard from "../../molecules/userCard/userCard.component";
 import HomeAlert from "../../molecules/homeAlert/homeAlert.component";
 import { getDashboardAlert } from "@/src/api/services/dashboard";
+import { DashboardResponse } from "@/src/api/models/dashboard";
+import {
+  GetDestinatinResponse,
+  GetWeatherResponse,
+} from "@/src/api/models/weather";
 
 const getCurrentPosition = (): Promise<GeolocationCoordinates> => {
   return new Promise((resolve, reject) => {
@@ -23,11 +28,10 @@ const HomeContainer = () => {
     isLoading,
   } = useQuery({
     queryKey: ["getWeatherData"],
-    queryFn: async (): Promise<any> => {
+    queryFn: async (): Promise<GetWeatherResponse> => {
       try {
         const position = await getCurrentPosition();
         const { latitude, longitude } = position;
-        window.console.log("latitude", latitude, longitude);
         return await getWeather({ latitude: latitude, longitude: longitude });
       } catch (error) {
         console.log("Konum alınamadı:", error);
@@ -38,11 +42,11 @@ const HomeContainer = () => {
 
   const {
     data: destinationData,
-    isErrorDestination,
-    isLoadingDestination,
+    isError: isErrorDestination,
+    isLoading: isLoadingDestination,
   } = useQuery({
     queryKey: ["getDestinationData"],
-    queryFn: async (): Promise<any> => {
+    queryFn: async (): Promise<GetDestinatinResponse> => {
       try {
         const apiKey = "6eba70dfe1604b28ad8be16552223abf";
 
@@ -61,11 +65,11 @@ const HomeContainer = () => {
 
   const {
     data: dashboardAlertData,
-    isErrorDashboardAlertData,
-    isLoadingDashboardAlertData,
+    isError: isErrorDashboardAlertData,
+    isLoading: isLoadingDashboardAlertData,
   } = useQuery({
     queryKey: ["getDashboardAlert"],
-    queryFn: async (): Promise<any> => {
+    queryFn: async (): Promise<DashboardResponse> => {
       return await getDashboardAlert();
     },
   });
@@ -74,6 +78,10 @@ const HomeContainer = () => {
 
   if (isLoading || isLoadingDestination || isLoadingDashboardAlertData) {
     return <LoadingState />;
+  }
+
+  if (isError || isErrorDestination || isErrorDashboardAlertData) {
+    return alert("Bir Hata İle Karşılaşıldı.");
   }
 
   return (

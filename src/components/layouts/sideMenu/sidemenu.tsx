@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import SidebarItem from "../../molecules/sideBarItem/sideBarItem";
 import { NavigationNames } from "../../navigation/navigation.type";
 import { getMenu } from "@/src/api/services/menu";
@@ -9,6 +8,9 @@ import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import useUserStore from "@/src/store/user";
 import { hideLoading, showLoading } from "@/src/store/app";
 import { useNavigate } from "react-router-dom";
+import { JSX } from "react";
+import { MakeSidebarProps } from "./sidemenu.type";
+import { MenuResponse } from "@/src/api/models/menu";
 
 function Sidebar({
   isOpen,
@@ -17,7 +19,7 @@ function Sidebar({
 }: {
   isOpen: boolean;
   toggleSidebar: () => void;
-  children: any;
+  children?: JSX.Element | JSX.Element[];
 }) {
   const { setLogin } = useUserStore();
   const navigate = useNavigate();
@@ -85,12 +87,15 @@ function Sidebar({
   );
 }
 
-export default function MakeSidebar({ isSidebarOpen, setIsSidebarOpen }) {
+export default function MakeSidebar({
+  isSidebarOpen,
+  setIsSidebarOpen,
+}: MakeSidebarProps) {
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
   const { data: menuData } = useQuery({
     queryKey: ["getMenu"],
-    queryFn: async (): Promise<any> => {
+    queryFn: async (): Promise<MenuResponse> => {
       return await getMenu();
     },
   });

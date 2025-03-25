@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Calendar, momentLocalizer, Views } from "react-big-calendar";
+import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "moment/locale/tr";
@@ -9,6 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getEvents } from "@/src/api/services/calendar";
 import Text from "../../atoms/text/text.component";
 import LoadingState from "../../molecules/loadingState/loadingState";
+import { CalenderResponse } from "@/src/api/models/calendar";
 
 moment.locale("tr");
 
@@ -20,7 +21,7 @@ export default function CalendarContainer() {
 
   const { data: eventsData, isLoading: isEventDataLoading } = useQuery({
     queryKey: ["getEvents"],
-    queryFn: async (): Promise<any> => {
+    queryFn: async (): Promise<CalenderResponse> => {
       const response = await getEvents();
       return response;
     },
@@ -43,7 +44,7 @@ export default function CalendarContainer() {
           style={{ height: "calc(100vh - 180px)" }}
           className="rbc-calendar"
           date={currentDate}
-          onNavigate={(date) => setCurrentDate(date)}
+          onNavigate={(date: Date) => setCurrentDate(date)}
           toolbar={false}
         />
       </div>

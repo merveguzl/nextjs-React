@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { GenericAbortSignal, ResponseType } from "axios";
 
 export type RequestOption = {
