@@ -16,7 +16,7 @@ export default function FormLayout({
     handleSubmit,
     getValues,
     formState: { errors, isValid },
-
+    formState,
     ...formMethods
   } = useForm({
     resolver: zodResolver(schema),
@@ -33,6 +33,7 @@ export default function FormLayout({
         errors,
         getValues,
         register,
+        formState,
         ...formMethods,
       })}
     </>

@@ -4,16 +4,13 @@ import React, { useState } from "react";
 import Text from "../../atoms/text/text.component";
 import Button from "../../atoms/button/button.component";
 import LoadingState from "../../molecules/loadingState/loadingState";
+import { ProjectResponse } from "@/src/api/models/project";
 
 export default function ProjectContainer() {
   const [active, setActive] = useState(0);
-  const {
-    data: projectData,
-    isError,
-    isLoading,
-  } = useQuery({
+  const { data: projectData, isLoading } = useQuery({
     queryKey: ["getProjectData"],
-    queryFn: async (): Promise<any> => {
+    queryFn: async (): Promise<ProjectResponse> => {
       return await getProjectData();
     },
   });
