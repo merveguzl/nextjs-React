@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Text from "../../atoms/text/text.component";
 import Button from "../../atoms/button/button.component";

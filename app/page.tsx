@@ -1,3 +1,5 @@
+"use client";
+
 import RootNavigation from "@/src/components/navigation/rootNavigation";
 export default function App() {
   return (

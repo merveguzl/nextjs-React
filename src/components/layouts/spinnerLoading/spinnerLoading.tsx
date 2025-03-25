@@ -1,3 +1,5 @@
+"use client";
+
 import Lottie from "lottie-react";
 import React from "react";
 import LoadingGif from "../../../../public/assets/gif/loading.json";

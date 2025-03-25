@@ -1,3 +1,5 @@
+"use client";
+
 import { WeatherBanner } from "@/src/constants";
 import { t } from "i18next";
 import React from "react";

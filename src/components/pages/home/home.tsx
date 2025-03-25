@@ -1,3 +1,5 @@
+"use client";
+
 import WeatherCard from "../../molecules/weatherCard/weatherCard.component";
 import { getSeason } from "@/src/utils";
 import { useQuery } from "@tanstack/react-query";

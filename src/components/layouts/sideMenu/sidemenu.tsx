@@ -1,3 +1,5 @@
+"use client";
+
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import SidebarItem from "../../molecules/sideBarItem/sideBarItem";
 import { NavigationNames } from "../../navigation/navigation.type";

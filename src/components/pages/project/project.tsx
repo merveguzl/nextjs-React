@@ -1,3 +1,5 @@
+"use client";
+
 import { getProjectData } from "@/src/api/services/project";
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";

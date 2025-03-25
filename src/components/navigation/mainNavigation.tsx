@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import MakeSidebar from "../layouts/sideMenu/sidemenu";
 import { Routes, Route } from "react-router-dom";

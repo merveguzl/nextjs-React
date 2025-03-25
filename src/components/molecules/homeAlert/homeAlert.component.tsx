@@ -1,3 +1,5 @@
+"use client";
+
 import { useNavigate } from "react-router-dom";
 import Button from "../../atoms/button/button.component";
 import Text from "../../atoms/text/text.component";
