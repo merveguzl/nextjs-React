@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../../atoms/button/button.component";
 import Text from "../../atoms/text/text.component";
+import { DashboardItem } from "@/src/api/models/dashboard";
 
-const HomeAlert = ({ item }) => {
+const HomeAlert = ({ item }: { item: DashboardItem }) => {
   const navigate = useNavigate();
 
   return (

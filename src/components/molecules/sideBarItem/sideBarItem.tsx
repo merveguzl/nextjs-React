@@ -7,6 +7,7 @@ interface SidebarItemProps {
   icon: React.ReactNode;
   text: string;
   subMenu?: SubMenuItemProps[] | null;
+  path: string;
 }
 
 interface SubMenuItemProps extends Omit<SidebarItemProps, "expanded"> {
@@ -38,7 +39,7 @@ export default function SidebarItem({
      `}
         >
           <span className="h-6 w-6">
-            <img src={icon} />
+            <img src={icon as string} />
           </span>
           <Text
             text={text}

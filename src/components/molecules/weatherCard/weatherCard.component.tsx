@@ -1,12 +1,16 @@
 import { WeatherBanner } from "@/src/constants";
 import { t } from "i18next";
 import React from "react";
+import { WeatherCardProps } from "./weatherCard.type";
 
-const WeatherCard = ({ season, weatherData, destinationData }) => {
-  // Mevsime göre arka planı alıyoruz
+const WeatherCard = ({
+  season,
+  weatherData,
+  destinationData,
+}: WeatherCardProps) => {
   const backgroundImage =
-    WeatherBanner[season]?.image || WeatherBanner.Spring.image;
-
+    WeatherBanner[season as keyof typeof WeatherBanner]?.image ||
+    WeatherBanner.Spring.image;
   return (
     <div
       className="container bg-grey-lightest mx-auto shadow rounded  bg-cover relative"

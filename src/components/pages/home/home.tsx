@@ -22,11 +22,7 @@ const getCurrentPosition = (): Promise<GeolocationCoordinates> => {
 };
 
 const HomeContainer = () => {
-  const {
-    data: weatherData,
-    isError,
-    isLoading,
-  } = useQuery({
+  const { data: weatherData, isLoading } = useQuery({
     queryKey: ["getWeatherData"],
     queryFn: async (): Promise<GetWeatherResponse> => {
       try {
@@ -40,11 +36,7 @@ const HomeContainer = () => {
     },
   });
 
-  const {
-    data: destinationData,
-    isError: isErrorDestination,
-    isLoading: isLoadingDestination,
-  } = useQuery({
+  const { data: destinationData, isLoading: isLoadingDestination } = useQuery({
     queryKey: ["getDestinationData"],
     queryFn: async (): Promise<GetDestinatinResponse> => {
       try {
@@ -63,25 +55,18 @@ const HomeContainer = () => {
     },
   });
 
-  const {
-    data: dashboardAlertData,
-    isError: isErrorDashboardAlertData,
-    isLoading: isLoadingDashboardAlertData,
-  } = useQuery({
-    queryKey: ["getDashboardAlert"],
-    queryFn: async (): Promise<DashboardResponse> => {
-      return await getDashboardAlert();
-    },
-  });
+  const { data: dashboardAlertData, isLoading: isLoadingDashboardAlertData } =
+    useQuery({
+      queryKey: ["getDashboardAlert"],
+      queryFn: async (): Promise<DashboardResponse> => {
+        return await getDashboardAlert();
+      },
+    });
 
   const season = getSeason();
 
   if (isLoading || isLoadingDestination || isLoadingDashboardAlertData) {
     return <LoadingState />;
-  }
-
-  if (isError || isErrorDestination || isErrorDashboardAlertData) {
-    return alert("Bir Hata İle Karşılaşıldı.");
   }
 
   return (
