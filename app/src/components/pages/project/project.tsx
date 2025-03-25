@@ -1,12 +1,12 @@
 "use client";
 
-import { getProjectData } from "@/src/api/services/project";
+import { getProjectData } from "@/app/src/api/services/project";
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import Text from "../../atoms/text/text.component";
 import Button from "../../atoms/button/button.component";
 import LoadingState from "../../molecules/loadingState/loadingState";
-import { ProjectResponse } from "@/src/api/models/project";
+import { ProjectResponse } from "@/app/src/api/models/project";
 import Image from "next/image";
 
 export default function ProjectContainer() {

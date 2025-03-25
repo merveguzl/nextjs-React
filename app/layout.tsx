@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import LoadingSpinner from "@/src/components/layouts/spinnerLoading/spinnerLoading";
+import LoadingSpinner from "@/app/src/components/layouts/spinnerLoading/spinnerLoading";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

@@ -1,6 +1,6 @@
 "use client";
 
-import { WeatherBanner } from "@/src/constants";
+import { WeatherBanner } from "@/app/src/constants";
 import { t } from "i18next";
 import React from "react";
 import { WeatherCardProps } from "./weatherCard.type";

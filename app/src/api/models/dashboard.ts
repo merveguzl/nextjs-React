@@ -1,4 +1,4 @@
-import { PageNameType } from "@/src/components/navigation/navigation.type";
+import { PageNameType } from "@/app/src/components/navigation/navigation.type";
 
 export type DashboardItem = {
   title: string;

@@ -1,8 +1,8 @@
 import {
   GetDestinatinResponse,
   GetWeatherResponse,
-} from "@/src/api/models/weather";
-import { WeatherBanner } from "@/src/constants";
+} from "@/app/src/api/models/weather";
+import { WeatherBanner } from "@/app/src/constants";
 
 export type WeatherCardProps = {
   season: keyof typeof WeatherBanner;

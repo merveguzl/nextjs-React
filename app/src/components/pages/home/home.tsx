@@ -1,18 +1,16 @@
-"use client";
-
 import WeatherCard from "../../molecules/weatherCard/weatherCard.component";
-import { getSeason } from "@/src/utils";
+import { getSeason } from "@/app/src/utils";
 import { useQuery } from "@tanstack/react-query";
-import { getDestination, getWeather } from "@/src/api/services/weather";
+import { getDestination, getWeather } from "@/app/src/api/services/weather";
 import LoadingState from "../../molecules/loadingState/loadingState";
 import UserCard from "../../molecules/userCard/userCard.component";
 import HomeAlert from "../../molecules/homeAlert/homeAlert.component";
-import { getDashboardAlert } from "@/src/api/services/dashboard";
-import { DashboardResponse } from "@/src/api/models/dashboard";
+import { getDashboardAlert } from "@/app/src/api/services/dashboard";
+import { DashboardResponse } from "@/app/src/api/models/dashboard";
 import {
   GetDestinatinResponse,
   GetWeatherResponse,
-} from "@/src/api/models/weather";
+} from "@/app/src/api/models/weather";
 
 const getCurrentPosition = (): Promise<GeolocationCoordinates> => {
   return new Promise((resolve, reject) => {

@@ -2,15 +2,15 @@
 
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import SidebarItem from "../../molecules/sideBarItem/sideBarItem";
-import { getMenu } from "@/src/api/services/menu";
+import { getMenu } from "@/app/src/api/services/menu";
 import { useQuery } from "@tanstack/react-query";
 import Text from "../../atoms/text/text.component";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
-import useUserStore from "@/src/store/user";
-import { hideLoading, showLoading } from "@/src/store/app";
+import useUserStore from "@/app/src/store/user";
+import { hideLoading, showLoading } from "@/app/src/store/app";
 import { JSX } from "react";
 import { MakeSidebarProps } from "./sidemenu.type";
-import { MenuResponse } from "@/src/api/models/menu";
+import { MenuResponse } from "@/app/src/api/models/menu";
 import Image from "next/image";
 
 function Sidebar({

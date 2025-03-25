@@ -6,10 +6,10 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "moment/locale/tr";
 import { useQuery } from "@tanstack/react-query";
-import { getEvents } from "@/src/api/services/calendar";
+import { getEvents } from "@/app/src/api/services/calendar";
 import Text from "../../atoms/text/text.component";
 import LoadingState from "../../molecules/loadingState/loadingState";
-import { CalenderResponse } from "@/src/api/models/calendar";
+import { CalenderResponse } from "@/app/src/api/models/calendar";
 
 moment.locale("tr");
 

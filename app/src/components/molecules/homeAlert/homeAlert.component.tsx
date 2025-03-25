@@ -2,7 +2,7 @@
 
 import Button from "../../atoms/button/button.component";
 import Text from "../../atoms/text/text.component";
-import { DashboardItem } from "@/src/api/models/dashboard";
+import { DashboardItem } from "@/app/src/api/models/dashboard";
 
 const HomeAlert = ({ item }: { item: DashboardItem }) => {
   return (

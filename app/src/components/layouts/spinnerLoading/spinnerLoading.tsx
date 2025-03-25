@@ -2,8 +2,8 @@
 
 import Lottie from "lottie-react";
 import React, { ReactNode } from "react";
-import LoadingGif from "../../../../public/assets/gif/loading.json";
-import { useLoadingStore } from "@/src/store/app";
+import LoadingGif from "../../../../../public/assets/gif/loading.json";
+import { useLoadingStore } from "@/app/src/store/app";
 const LoadingSpinner = ({ children }: { children: ReactNode }) => {
   const visible = useLoadingStore((state) => state.visible);
 
