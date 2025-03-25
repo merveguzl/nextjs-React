@@ -16,7 +16,6 @@ moment.locale("tr");
 const localizer = momentLocalizer(moment);
 
 export default function CalendarContainer() {
-  // Seçili tarih ve görünüm state
   const [currentDate, setCurrentDate] = useState(new Date());
 
   const { data: eventsData, isLoading: isEventDataLoading } = useQuery({
@@ -34,7 +33,6 @@ export default function CalendarContainer() {
   return (
     <div className="p-4 sm:p-6 lg:p-8 flex flex-col h-full bg-white">
       <Text text="agenda_calendar" className="text-background bg-white" />
-      {/* Takvim */}
       <div className="flex-1 w-full rounded-md shadow-md bg-white overflow-auto">
         <Calendar
           localizer={localizer}

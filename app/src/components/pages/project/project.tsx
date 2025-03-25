@@ -45,7 +45,7 @@ export default function ProjectContainer() {
                   <Text text={item.time} className="text-md text-gray-400" />
                 </div>
                 <div className="text-md italic text-gray-400 text-center md:text-left">
-                  {item.subTitle}
+                  <p>{item.subTitle}</p>
                 </div>
               </li>
             ))
