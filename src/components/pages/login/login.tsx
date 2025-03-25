@@ -18,6 +18,7 @@ export default function LoginContainer() {
       hideLoading();
     }, 1500);
   };
+
   return (
     <FormLayout schema={schema}>
       {({ register, handleSubmit, errors }) => (

@@ -1,13 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { defaultSchema } from "./formSchema";
 import { FormLayoutPropsType } from "./formLayout.type";
+import { LoginFormData } from "../../pages/login/login.type";
 
 export default function FormLayout({
   defaultValues,
   children,
-  schema = defaultSchema,
+  schema,
   mode = "all",
   reValidateMode,
 }: FormLayoutPropsType) {
@@ -18,8 +18,9 @@ export default function FormLayout({
     formState: { errors, isValid },
     formState,
     ...formMethods
-  } = useForm({
-    resolver: zodResolver(schema),
+  } = useForm<LoginFormData>({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolver: zodResolver(schema) as any,
     mode,
     reValidateMode,
     defaultValues,
