@@ -75,7 +75,7 @@ export default function ProjectContainer() {
               <Button
                 text="Jiraya Git"
                 className="block text-orange group-hover:text-slate-800 transition duration-200 mx-auto md:mx-0"
-                onClick={() => window.open(projectData[active].url, "_blank")}
+                // onClick={() => window.open(projectData[active].url, "_blank")}
               />
             </article>
           </section>

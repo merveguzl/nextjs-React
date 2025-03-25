@@ -12,9 +12,9 @@ export default function LoginContainer() {
 
   const onSubmit = (data: LoginFormData) => {
     showLoading();
-    window.console.log(data);
     setTimeout(() => {
       setLogin(true);
+      console.log(data);
       hideLoading();
     }, 1500);
   };
