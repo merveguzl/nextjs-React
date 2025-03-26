@@ -8,6 +8,7 @@ export const NavigationNames = {
   FORGOT_PASSWORD: "/forgotPassword",
   HOME: "/home",
   PROJECT: "/project",
+  NOTIFICATION: "/notification",
 } as const;
 
 export type PageNameType =

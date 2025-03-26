@@ -10,6 +10,7 @@ import { getEvents } from "@/app/src/api/services/calendar";
 import Text from "../../atoms/text/text.component";
 import LoadingState from "../../molecules/loadingState/loadingState";
 import { CalenderResponse } from "@/app/src/api/models/calendar";
+import { queryName } from "@/app/src/constants/queryName";
 
 moment.locale("tr");
 
@@ -19,7 +20,7 @@ export default function CalendarContainer() {
   const [currentDate, setCurrentDate] = useState(new Date());
 
   const { data: eventsData, isLoading: isEventDataLoading } = useQuery({
-    queryKey: ["getEvents"],
+    queryKey: [queryName.GET_EVENT],
     queryFn: async (): Promise<CalenderResponse> => {
       const response = await getEvents();
       return response;

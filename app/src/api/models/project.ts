@@ -9,3 +9,15 @@ export type ProjectItem = {
 };
 
 export type ProjectResponse = ProjectItem[];
+
+export type ProjectListItem = {
+  title: string;
+  desc: string;
+  isUrgent: boolean;
+  beginningDate: string;
+};
+export type ProjectListResponse = ProjectListItem[];
+
+export type DeleteProjectListItem = {
+  id: string;
+};

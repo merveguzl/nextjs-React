@@ -12,6 +12,7 @@ import { JSX } from "react";
 import { MakeSidebarProps } from "./sidemenu.type";
 import { MenuResponse } from "@/app/src/api/models/menu";
 import Image from "next/image";
+import { queryName } from "@/app/src/constants/queryName";
 
 function Sidebar({
   isOpen,
@@ -101,7 +102,7 @@ export default function MakeSidebar({
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
   const { data: menuData } = useQuery({
-    queryKey: ["getMenu"],
+    queryKey: [queryName.GET_MENU],
     queryFn: async (): Promise<MenuResponse> => {
       return await getMenu();
     },

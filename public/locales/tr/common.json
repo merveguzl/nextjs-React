@@ -19,5 +19,22 @@
   "email_settings": "E-posta Adresiniz: ",
   "current_password": "Mevcut Şifre",
   "new_passord": "Yeni Şifre",
-  "save": "Kaydet"
+  "save": "Kaydet",
+  "detail": "Detay",
+  "add_task": "Task Ekle",
+  "add_new_task": "Yeni Görev Oluştur",
+  "task_title": "Task Başlığı",
+  "task_desc": "Task Açıklaması",
+  "task_desc_placeHolder": "Görev açıklamasını girin",
+  "important": "Önemli (Lütfen Acil İşlerde İşaretleyiniz)",
+  "task_title_placeHolder": "Görev başlığını girin",
+  "error_task_added": "Task eklenirken bir hata oluştu!",
+  "saved_task": "Taskınız kaydedildi",
+  "important_list": "Önemli",
+  "notification": "Bildirimler",
+  "next": "Sonraki",
+  "previous": "Önceki",
+  "delete": "Sil",
+  "deleted_meesage": "Taskınız Başarıyla Silindi.",
+  "deleted_error": "Taskınız Silinirken Bir Hata Oluştu."
 }

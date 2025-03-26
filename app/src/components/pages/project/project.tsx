@@ -1,20 +1,70 @@
-"use client";
-
-import { getProjectData } from "@/app/src/api/services/project";
-import { useQuery } from "@tanstack/react-query";
+import {
+  deleteProjectListItem,
+  getProjectList,
+  postProjectList,
+} from "@/app/src/api/services/project";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
-import Text from "../../atoms/text/text.component";
-import Button from "../../atoms/button/button.component";
 import LoadingState from "../../molecules/loadingState/loadingState";
-import { ProjectResponse } from "@/app/src/api/models/project";
-import Image from "next/image";
+import { ProjectListResponse } from "@/app/src/api/models/project";
+import ProjectCard from "../../molecules/projectCard/projectCard";
+import Text from "../../atoms/text/text.component";
+import ProjectAddedModal from "./projectAddedModal";
+import { hideLoading, showLoading } from "@/app/src/store/app";
+import { t } from "i18next";
+import ProjectDetailModal from "./projectDetailModal";
+import { queryName } from "@/app/src/constants/queryName";
+import Pagination from "../../molecules/pagination/pagination";
+import { ConvertProjectItemData } from "./project.type";
 
 export default function ProjectContainer() {
-  const [active, setActive] = useState(0);
-  const { data: projectData, isLoading } = useQuery({
-    queryKey: ["getProjectData"],
-    queryFn: async (): Promise<ProjectResponse> => {
-      return await getProjectData();
+  const [isVisibleAddTask, setVisibleAddTask] = useState<boolean>(false);
+  const [isVisibleDetail, setVisibleDetail] = useState<boolean>(false);
+  const [modalData, setModalData] = useState<
+    ConvertProjectItemData | undefined
+  >();
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
+  const {
+    data: projectListData,
+    isLoading,
+    refetch: getProjectListReFetch,
+  } = useQuery({
+    queryKey: [queryName.GET_PROJECT_LIST],
+    queryFn: async (): Promise<ProjectListResponse> => {
+      return await getProjectList();
+    },
+  });
+
+  const { mutate: postProjectItem } = useMutation({
+    mutationFn: (body: ConvertProjectItemData) => postProjectList(body),
+    onSuccess: () => {
+      setVisibleAddTask(false);
+      alert(t("saved_task"));
+      getProjectListReFetch();
+      hideLoading();
+    },
+    onError: () => {
+      alert(t("error_task_added"));
+      hideLoading();
+    },
+  });
+
+  const { mutate: deleteProjectListItemMutation } = useMutation({
+    mutationFn: (body: ConvertProjectItemData) => {
+      showLoading();
+      return deleteProjectListItem({ id: body.id });
+    },
+    onSuccess: () => {
+      setVisibleDetail(false);
+      alert(t("deleted_meesage"));
+      getProjectListReFetch();
+      hideLoading();
+    },
+    onError: () => {
+      alert(t("deleted_error"));
+      hideLoading();
     },
   });
 
@@ -22,76 +72,64 @@ export default function ProjectContainer() {
     return <LoadingState />;
   }
 
+  const totalItems = projectListData
+    ? Object.values(projectListData).length
+    : 0;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const paginatedData = projectListData
+    ? Object.entries(projectListData)
+        .map(([id, item]) => ({
+          id,
+          ...item,
+        }))
+        .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+    : [];
+
+  const onSeeDetail = (item: ConvertProjectItemData) => {
+    setModalData(item);
+    setVisibleDetail(true);
+  };
+
   return (
-    <div className="flex flex-col md:flex-row w-full h-full shadow-lg rounded-3xl">
-      <section className="flex flex-col pt-3 w-full md:w-4/12 bg-gray-50 min-h-[50vh] md:min-h-full overflow-y-auto">
-        <ul className="mt-6 space-y-4">
-          {projectData ? (
-            projectData?.map((item, key) => (
-              <li
-                key={key}
-                className={`py-6 border-b px-4 transition hover:bg-amber-100 cursor-pointer text-center md:text-left ${
-                  active === key && "bg-amber-700 text-white"
-                }`}
-                onClick={() => setActive(key)}
-              >
-                <div className="flex flex-col md:flex-row justify-between items-center">
-                  <Text
-                    text={item.title}
-                    className={`text-lg font-semibold ${
-                      active === key ? "text-white" : "text-background"
-                    } `}
-                  />
-                  <Text text={item.time} className="text-md text-gray-400" />
-                </div>
-                <div className="text-md italic text-gray-400 text-center md:text-left">
-                  <p>{item.subTitle}</p>
-                </div>
-              </li>
-            ))
-          ) : (
-            <div></div>
-          )}
-        </ul>
-      </section>
-      {projectData ? (
-        <section className="w-full md:w-6/12 px-4 flex flex-col bg-white rounded-r-3xl">
-          <div className="flex flex-col md:flex-row justify-between items-center h-auto md:h-32 border-b-2 mb-8">
-            <div className="flex space-x-4 items-center">
-              <div className="h-20 w-20 md:h-12 md:w-12 rounded-full overflow-hidden">
-                <Image
-                  src={projectData[active].projectImage}
-                  loading="lazy"
-                  className="h-full w-full object-cover"
-                  alt="projectimage"
-                  width={200}
-                  height={200}
-                />
-              </div>
-              <div className="flex flex-col text-center md:text-left">
-                <Text
-                  text={projectData[active].projectName}
-                  className="font-semibold text-lg text-background"
-                />
-              </div>
-            </div>
-          </div>
-          <section>
-            <article className="text-gray-500 leading-7 tracking-wider text-center md:text-left">
-              <Text
-                text={projectData[active].desc}
-                className="text-background"
-              />
-              <Button
-                text="Jiraya Git"
-                className="block text-orange group-hover:text-slate-800 transition duration-200 mx-auto md:mx-0"
-              />
-            </article>
-          </section>
-        </section>
-      ) : (
-        <div></div>
-      )}
+    <div className="sm:px-6 w-full">
+      <div className="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
+        <div className="sm:flex items-center justify-end">
+          <button
+            onClick={() => setVisibleAddTask(true)}
+            className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded"
+          >
+            <Text
+              text="add_task"
+              className="text-sm font-medium leading-none text-white"
+            />
+          </button>
+        </div>
+        <div className="mt-7 overflow-x-auto">
+          <table className="w-full whitespace-nowrap">
+            <tbody>
+              {paginatedData.map((item, key) => (
+                <ProjectCard key={key} item={item} onSeeDetail={onSeeDetail} />
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />
+      </div>
+      <ProjectAddedModal
+        isModalOpen={isVisibleAddTask}
+        setIsModalOpen={setVisibleAddTask}
+        postProjectItem={postProjectItem}
+      />
+      <ProjectDetailModal
+        isModalOpen={isVisibleDetail}
+        setIsModalOpen={setVisibleDetail}
+        item={modalData}
+        deleteProjectListItemMutation={deleteProjectListItemMutation}
+      />
     </div>
   );
 }

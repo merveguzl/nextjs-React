@@ -5,4 +5,6 @@ export const APIURLs = {
   GET_DESTINATION: `https://api.opencagedata.com/geocode/v1/json?q=latitudeValue+longitudeValue&key=apiKey`,
   GET_DASBOARD_DATA: `DashboardAlert.json`,
   GET_PROJECT_DATA: `ProjectDetail.json`,
+  GET_PROJECT_LIST: `ProjectList.json`,
+  DELETE_PROJECT_LIST: `ProjectList/item.json`,
 } as const;

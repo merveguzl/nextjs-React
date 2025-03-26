@@ -8,6 +8,7 @@ import CalendarContainer from "../pages/calendar/calendar";
 import SettingsContainer from "../pages/settings/settings";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import ProjectContainer from "../pages/project/project";
+import NotificationContainer from "../pages/notification/notification";
 
 export default function MainNavigation() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -21,6 +22,8 @@ export default function MainNavigation() {
         return <ProjectContainer />;
       case NavigationNames.SETTINGS:
         return <SettingsContainer />;
+      case NavigationNames.NOTIFICATION:
+        return <NotificationContainer />;
       case NavigationNames.ROOT:
         return <HomeContainer />;
       default:
@@ -29,6 +32,11 @@ export default function MainNavigation() {
   };
 
   const renderPages = renderPageFunc();
+
+  const setPagePathFunction = (path: PageNameType) => {
+    setPagePath(path);
+    setIsSidebarOpen(false);
+  };
 
   return (
     <div className="flex h-screen">
@@ -40,7 +48,7 @@ export default function MainNavigation() {
         <MakeSidebar
           isSidebarOpen={isSidebarOpen}
           setIsSidebarOpen={setIsSidebarOpen}
-          setPagePath={setPagePath}
+          setPagePath={setPagePathFunction}
         />
       </div>
 

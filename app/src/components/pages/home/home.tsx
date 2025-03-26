@@ -11,6 +11,7 @@ import {
   GetDestinatinResponse,
   GetWeatherResponse,
 } from "@/app/src/api/models/weather";
+import { queryName } from "@/app/src/constants/queryName";
 
 const getCurrentPosition = (): Promise<GeolocationCoordinates> => {
   return new Promise((resolve, reject) => {
@@ -23,7 +24,7 @@ const getCurrentPosition = (): Promise<GeolocationCoordinates> => {
 
 const HomeContainer = () => {
   const { data: weatherData, isLoading } = useQuery({
-    queryKey: ["getWeatherData"],
+    queryKey: [queryName.GET_WAETHER_DATA],
     queryFn: async (): Promise<GetWeatherResponse> => {
       try {
         const position = await getCurrentPosition();
@@ -37,7 +38,7 @@ const HomeContainer = () => {
   });
 
   const { data: destinationData, isLoading: isLoadingDestination } = useQuery({
-    queryKey: ["getDestinationData"],
+    queryKey: [queryName.GET_DESTINATION_DATA],
     queryFn: async (): Promise<GetDestinatinResponse> => {
       try {
         const apiKey = "6eba70dfe1604b28ad8be16552223abf";
@@ -57,7 +58,7 @@ const HomeContainer = () => {
 
   const { data: dashboardAlertData, isLoading: isLoadingDashboardAlertData } =
     useQuery({
-      queryKey: ["getDashboardAlert"],
+      queryKey: [queryName.GET_DASHBOARD_ALERT],
       queryFn: async (): Promise<DashboardResponse> => {
         return await getDashboardAlert();
       },
