@@ -20,3 +20,8 @@ export type ProjectDetailModalProps = {
 export type ConvertProjectItemData = {
   id: string;
 } & ProjectListItem;
+
+export enum SEE_DATA {
+  ALL = "all",
+  IMPORTANT = "important",
+}

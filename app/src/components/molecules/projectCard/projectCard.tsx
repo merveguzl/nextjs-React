@@ -8,8 +8,8 @@ export default function ProjectCard({ item, onSeeDetail }: ProjectCardProps) {
       tabIndex={0}
       className="focus:outline-none h-16 border border-gray-100 rounded"
     >
-      <td className="">
-        <div className="flex items-center pl-5">
+      <td className="w-1/2">
+        <div className="flex items-center pl-5 ">
           <Text
             text={item.title}
             className="text-base font-medium leading-none text-gray-700 mr-2"

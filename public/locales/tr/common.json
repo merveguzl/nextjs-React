@@ -36,5 +36,6 @@
   "previous": "Önceki",
   "delete": "Sil",
   "deleted_meesage": "Taskınız Başarıyla Silindi.",
-  "deleted_error": "Taskınız Silinirken Bir Hata Oluştu."
+  "deleted_error": "Taskınız Silinirken Bir Hata Oluştu.",
+  "all": "Tümü"
 }

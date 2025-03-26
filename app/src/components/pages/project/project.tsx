@@ -15,7 +15,7 @@ import { t } from "i18next";
 import ProjectDetailModal from "./projectDetailModal";
 import { queryName } from "@/app/src/constants/queryName";
 import Pagination from "../../molecules/pagination/pagination";
-import { ConvertProjectItemData } from "./project.type";
+import { ConvertProjectItemData, SEE_DATA } from "./project.type";
 
 export default function ProjectContainer() {
   const [isVisibleAddTask, setVisibleAddTask] = useState<boolean>(false);
@@ -23,6 +23,7 @@ export default function ProjectContainer() {
   const [modalData, setModalData] = useState<
     ConvertProjectItemData | undefined
   >();
+  const [seeData, setSeeData] = useState<SEE_DATA>(SEE_DATA.ALL);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
@@ -72,17 +73,31 @@ export default function ProjectContainer() {
     return <LoadingState />;
   }
 
-  const totalItems = projectListData
-    ? Object.values(projectListData).length
-    : 0;
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
-  const paginatedData = projectListData
+  const pureData = projectListData
     ? Object.entries(projectListData)
         .map(([id, item]) => ({
           id,
           ...item,
         }))
-        .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+        .filter((item) => {
+          if (seeData === SEE_DATA.ALL) {
+            return true;
+          }
+          if (seeData === SEE_DATA.IMPORTANT) {
+            return item.isUrgent === true;
+          }
+          return true;
+        })
+    : [];
+
+  const totalItems = pureData.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  const paginatedData = projectListData
+    ? pureData.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+      )
     : [];
 
   const onSeeDetail = (item: ConvertProjectItemData) => {
@@ -93,10 +108,35 @@ export default function ProjectContainer() {
   return (
     <div className="sm:px-6 w-full">
       <div className="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
-        <div className="sm:flex items-center justify-end">
+        <div className="sm:flex items-center justify-between">
+          <div className="flex items-center">
+            <a className="rounded-full ml-4 sm:ml-8">
+              <div
+                className={`py-2 px-8  hover:bg-softOrange text-orange rounded-full ${
+                  seeData === SEE_DATA.ALL ? "bg-softOrange" : "bg-white-100"
+                }`}
+                onClick={() => setSeeData(SEE_DATA.ALL)}
+              >
+                <Text text="all" />
+              </div>
+            </a>
+            <a className="rounded-full  ml-4 sm:ml-8">
+              <div
+                className={`py-2 px-8  hover:bg-softOrange text-orange rounded-full ${
+                  seeData === SEE_DATA.IMPORTANT
+                    ? "bg-softOrange"
+                    : "bg-white-100"
+                }`}
+                onClick={() => setSeeData(SEE_DATA.IMPORTANT)}
+              >
+                <Text text="important_list" />
+              </div>
+            </a>
+          </div>
+
           <button
             onClick={() => setVisibleAddTask(true)}
-            className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded"
+            className="mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-orange hover:bg-softOrange  rounded"
           >
             <Text
               text="add_task"

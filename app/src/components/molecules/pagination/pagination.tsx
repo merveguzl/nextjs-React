@@ -56,7 +56,7 @@ export default function Pagination({
                 onClick={() => onPageChange(index + 1)}
                 className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold ${
                   currentPage === index + 1
-                    ? "bg-indigo-600 text-white"
+                    ? "bg-orange text-white"
                     : "text-gray-900 ring-1 ring-gray-300 hover:bg-gray-50"
                 }`}
               >

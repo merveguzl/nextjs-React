@@ -20,6 +20,7 @@ export default {
         error: "#EF4444",
         success: "#10B981",
         orange: "#FF5100",
+        softOrange: "#ffdccc",
         white: "#fff",
       },
       animation: {
